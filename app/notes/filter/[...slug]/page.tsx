@@ -19,7 +19,7 @@ return {
  openGraph:{
 title:`Notes: ${category}`,
 description: `Viewing notes in the ${category} category.`,
-url: `https://notehub.com/notes/filter/${category}`,
+url: `https://08-zustand-orcin-eight.vercel.app/notes/filter/${category}`,   
  images:[
   {
     url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",

@@ -4,14 +4,13 @@ import css from './NotesPage.module.css';
 import React, { useState } from 'react';
 import NoteList from '@/components/NoteList/NoteList';
 import Pagination from '@/components/Pagination/Pagination';
-import Modal from '@/components/Modal/Modal';
-import NoteForm from '@/components/NoteForm/NoteForm';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useDebouncedCallback } from 'use-debounce';
 import { fetchNotes } from '@/lib/api';
 import { Toaster } from 'react-hot-toast';
 import { NoteTag } from '@/types/note';
+import Link from 'next/link';
 
 interface NoteClientProps{
   category:NoteTag | undefined
@@ -20,7 +19,7 @@ interface NoteClientProps{
 export default function NotesClient({category}:NoteClientProps) {
 const [currentPage, setCurrentPage]=useState<number>(1);
 const [searchQuery, setSearchQuery]=useState<string>('')
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+
 
   const updateSearchQuery = useDebouncedCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,8 +40,6 @@ const [searchQuery, setSearchQuery]=useState<string>('')
 
   const totalPages=data?.totalPages ?? 0
 
-  const openModal = () => setIsOpenModal(true);
-  const closeModal = () => setIsOpenModal(false);
 
   return (
     <div className={css.app}>
@@ -66,9 +63,9 @@ const [searchQuery, setSearchQuery]=useState<string>('')
           />
         )}
 
-        <button className={css.button} onClick={openModal}>
+        <Link  className={css.button}  href="/notes/action/create">
           Create note +
-        </button>
+        </Link>
       </header>
 
       {isLoading && <p>Loading...</p>}
@@ -77,11 +74,7 @@ const [searchQuery, setSearchQuery]=useState<string>('')
   <p>No notes found</p>
 )}
    {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
-      {isOpenModal && (
-        <Modal onClose={closeModal}>
-          <NoteForm onClose={closeModal} />{' '}
-        </Modal>
-      )}
+  
     </div>
   );
 }
