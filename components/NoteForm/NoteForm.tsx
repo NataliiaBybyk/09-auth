@@ -37,23 +37,26 @@ const handleChange=(
     })
   }
 
-  const handleSubmit = (formData: FormData) => {
-  const values={
-    title:formData.get('title'),
-      content:formData.get('content'),
-      tag:formData.get('tag'),
-  }as NoteFormData
-    mutation.mutate(values);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+
+  const formData ={
+    title:String(draft?.title ?? ''),
+      content:String(draft?.content ?? ''),
+      tag:String(draft?.tag ?? ''),
+  } as NoteFormData;
+    mutation.mutate(formData);
   };
 
   const handlerCancel=()=>router.back()
 
   return (
     <>
-        <form className={css.form} action={handleSubmit}>
+        <form className={css.form} onSubmit={handleSubmit}>
           <div className={css.formGroup}>
             <label htmlFor="title">Title</label>
-            <input id="title" type="text" name="title" className={css.input} defaultValue={draft?.title} onChange={handleChange} />
+            <input id="title" type="text" name="title" className={css.input} value={draft?.title ?? ''} onChange={handleChange} />
           </div>
 
           <div className={css.formGroup}>
@@ -63,14 +66,14 @@ const handleChange=(
               name="content"
               rows={8}
               className={css.textarea}
-              defaultValue={draft?.content}
+              value={draft?.content??''}
               onChange={handleChange}
             />
           </div>
 
           <div className={css.formGroup}>
             <label htmlFor="tag">Tag</label>
-            <select  id="tag" name="tag" className={css.select} defaultValue={draft?.tag} onChange={handleChange}>
+            <select  id="tag" name="tag" className={css.select} value={draft?.tag ?? 'Todo'} onChange={handleChange}>
               <option value="Todo">Todo</option>
               <option value="Work">Work</option>
               <option value="Personal">Personal</option>
