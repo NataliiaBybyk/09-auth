@@ -4,7 +4,8 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import './globals.css';
-import { MotionProvider } from "./providers/MotionProvider";
+
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 
 const roboto = Roboto({
   subsets: ['latin'], 
@@ -42,14 +43,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.variable}>
         <TanStackProvider>
+          <AuthProvider>
+
+        
           <Header />
-  <MotionProvider>
+
  {children}
           {modal}
-  </MotionProvider>
+
          
 
           <Footer />
+            </AuthProvider>
         </TanStackProvider>
       </body>
     </html>

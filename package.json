@@ -13,6 +13,7 @@
     "@tanstack/react-query-devtools": "^5.91.1",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
+    "cookie": "^1.1.1",
     "formik": "^2.4.9",
     "framer-motion": "^12.23.26",
     "jotai": "^2.16.0",
@@ -23,6 +24,7 @@
     "react-dom": "19.2.0",
     "react-hot-toast": "^2.6.0",
     "react-paginate": "^8.3.0",
+    "set-cookie-parser": "^2.7.2",
     "use-debounce": "^10.0.6",
     "yup": "^1.7.1",
     "zustand": "^5.0.9"
