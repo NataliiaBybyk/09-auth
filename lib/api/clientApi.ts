@@ -1,7 +1,7 @@
 
 import { nextServer } from './api';
 import { Note, NoteFormData, NoteTag } from '@/types/note';
-import type {User} from '@/types/users';
+import type {User} from '@/types/user';
 
 
 

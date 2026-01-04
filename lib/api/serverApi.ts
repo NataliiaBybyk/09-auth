@@ -1,5 +1,5 @@
 import { nextServer } from './api';
-import type {User} from '@/types/users';   
+import type {User} from '@/types/user';   
 import { Note,  NoteTag } from '@/types/note';
 import { CheckSessionResponse,  FetchNotesResponse } from './clientApi';
 import { cookies } from 'next/headers';
